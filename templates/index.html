@@ -103,5 +103,25 @@
         © 2025 Mi Página Personal. Todos los derechos reservados.
     </footer>
 
+
+    <h1>Clientes desde la base de datos</h1>
+    {% if registros %}
+        <table>
+            <tr>
+                <th>Usuario</th>
+                <th>Pass</th>
+                <th>Estado</th>
+            </tr>
+            {% for cliente in registros %}
+            <tr>
+                <td>{{ Usuarios.Usuario }}</td>
+                <td>{{ Usuarios.Pass }}</td>
+                <td>{{ Usuarios.Estado }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay registros en la base de datos.</p>
+    {% endif %}
 </body>
 </html>
