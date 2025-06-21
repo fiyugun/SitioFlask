@@ -17,7 +17,7 @@ def home():
     try:
         conn = pyodbc.connect(conn_str)
         cursor = conn.cursor()
-        cursor.execute("SELECT TOP 10 * FROM tu_tabla")  # Ajusta el nombre de la tabla
+        cursor.execute("select * from [dbo].[Usuarios]")  # Ajusta el nombre de la tabla
         rows = cursor.fetchall()
         conn.close()
 
