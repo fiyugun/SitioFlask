@@ -1,0 +1,32 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  azureSubscription: 'AzureConnection'   # <--- Tu Service Connection
+  appName: 'site14'                      # <--- Tu App Service
+  packagePath: '.'                       # <--- Ruta de tu app
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.10'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Instalar dependencias'
+
+- script: |
+    python -m unittest discover
+  displayName: 'Ejecutar pruebas'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '$(azureSubscription)'
+    appType: 'webAppLinux'
+    appName: '$(appName)'
+    package: '$(System.DefaultWorkingDirectory)'
+  displayName: 'Desplegar a Azure App Service'
