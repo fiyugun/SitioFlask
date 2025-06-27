@@ -1,6 +1,2 @@
-<<<<<<< HEAD
 Flask
-=======
-Flask
->>>>>>> a229e18 (Hemos Agregado una variable nombre carlos)
 gunicorn
